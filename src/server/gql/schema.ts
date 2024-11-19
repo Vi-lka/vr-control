@@ -1,8 +1,9 @@
-import { buildSchema } from "drizzle-graphql";
+import { type AnyDrizzleDB, buildSchema } from "drizzle-graphql";
 import { db } from "../db";
 // import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
 
-const { schema } = buildSchema(db);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { schema } = buildSchema(db as AnyDrizzleDB<any>);
 
 // const fields = entities.inputs.TasksFilters.getFields()
 

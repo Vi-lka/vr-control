@@ -20,6 +20,10 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    IS_VERCEL: z
+      .enum(["true", "false"])
+      .default("true")
+      .optional(),
     CONTROL_KEY: z.string()
   },
 
@@ -45,6 +49,7 @@ export const env = createEnv({
     DB_PORT: process.env.DB_PORT,
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
+    IS_VERCEL: process.env.IS_VERCEL,
     CONTROL_KEY: process.env.CONTROL_KEY,
   },
   /**
