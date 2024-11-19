@@ -44,3 +44,6 @@ yarn-error.log*
 
 # idea files
 .idea
+
+# DB data
+vr-control-postgres-data
