@@ -7,7 +7,10 @@ import { GraphQLError } from "graphql";
 import schema from "~/server/gql/schema";
 import type { NextApiRequest, NextApiResponse } from "next/types";
 
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({ 
+  schema,
+  introspection: true,
+});
 
 const handler = startServerAndCreateNextHandler<NextRequest>(server, {
   context: async (req) => {
@@ -30,4 +33,26 @@ const handler = startServerAndCreateNextHandler<NextRequest>(server, {
   <HandlerReq extends NextRequest | Request>(req: HandlerReq, res?: any): Promise<Response>;
 }
 
-export { handler as GET, handler as POST };
+export async function GET(request: NextRequest) {
+  const response = await handler(request);
+
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  response.headers.set("Access-Control-Allow-Credentials", "true");
+
+  return response;
+}
+
+export async function POST(request: NextRequest) {
+  const response = await handler(request);
+
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  response.headers.set("Access-Control-Allow-Credentials", "true");
+
+  return response;
+}
+
+// export { handler as GET, handler as POST };
