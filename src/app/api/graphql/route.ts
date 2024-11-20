@@ -44,15 +44,13 @@ export async function GET(request: NextRequest) {
   return response;
 }
 
-// export async function POST(request: NextRequest) {
-//   const response = await handler(request);
+export async function POST(request: NextRequest) {
+  const response = await handler(request);
 
-//   response.headers.set("Access-Control-Allow-Origin", "*");
-//   response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-//   response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   response.headers.set("Access-Control-Allow-Credentials", "true");
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  response.headers.set("Access-Control-Allow-Credentials", "true");
 
-//   return response;
-// }
-
-export { handler as POST };
+  return response;
+}
