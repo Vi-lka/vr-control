@@ -1,6 +1,5 @@
 import { type NextRequest } from "next/server";
 import { env } from "~/env";
-import { db } from "~/server/db";
 
 export async function GET(request: NextRequest) {
   const headerKey = request.headers.get("control-key")
